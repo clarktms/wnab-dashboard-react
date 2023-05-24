@@ -17,12 +17,14 @@
 */
 import Dashboard from "views/Dashboard.js";
 import Icons from "views/Icons.js";
-import Map from "views/Map.js";
+//import Map from "views/Map.js";
 import Notifications from "views/Notifications.js";
-import Rtl from "views/Rtl.js";
+//import Rtl from "views/Rtl.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
+import TransactionsTableList from "features/transaction/TransactionsTableList";
+import CategoryTableList from "features/category/categoryTableList";
 
 var routes = [
   {
@@ -34,6 +36,22 @@ var routes = [
     layout: "/admin",
   },
   {
+    path: "/transactions",
+    name: "Transactions",
+    rtlName: "قائمة الجدول",
+    icon: "tim-icons icon-money-coins",
+    component: <TransactionsTableList />,
+    layout: "/admin",
+  },
+  {
+    path: "/categories",
+    name: "Categories",
+    rtlName: "قائمة الجدول",
+    icon: "tim-icons icon-puzzle-10",
+    component: <CategoryTableList />,
+    layout: "/admin",
+  },
+  {
     path: "/icons",
     name: "Icons",
     rtlName: "الرموز",
@@ -41,14 +59,14 @@ var routes = [
     component: <Icons />,
     layout: "/admin",
   },
-  {
-    path: "/map",
-    name: "Map",
-    rtlName: "خرائط",
-    icon: "tim-icons icon-pin",
-    component: <Map />,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/map",
+  //   name: "Map",
+  //   rtlName: "خرائط",
+  //   icon: "tim-icons icon-pin",
+  //   component: <Map />,
+  //   layout: "/admin",
+  // },
   {
     path: "/notifications",
     name: "Notifications",
@@ -81,13 +99,13 @@ var routes = [
     component: <Typography />,
     layout: "/admin",
   },
-  {
-    path: "/rtl-support",
-    name: "RTL Support",
-    rtlName: "ار تي ال",
-    icon: "tim-icons icon-world",
-    component: <Rtl />,
-    layout: "/rtl",
-  },
+  // {
+  //   path: "/rtl-support",
+  //   name: "RTL Support",
+  //   rtlName: "ار تي ال",
+  //   icon: "tim-icons icon-world",
+  //   component: <Rtl />,
+  //   layout: "/rtl",
+  // },
 ];
 export default routes;

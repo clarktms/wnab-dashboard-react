@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "6467c4488d4c806bd1062b8d",
+    "categoryName": "Movies",
+    "budgetedAmount": { "$numberDecimal": "30" },
+    "frequency": "monthly",
+    "active": true,
+    "createdAt": "2023-05-19T18:47:36.507Z",
+    "updatedAt": "2023-05-19T18:47:36.507Z",
+    "__v": 0
+  },
+  {
+    "_id": "6467c4648d4c806bd1062b91",
+    "categoryName": "Edith Medical",
+    "budgetedAmount": { "$numberDecimal": "6000" },
+    "frequency": "once",
+    "active": false,
+    "createdAt": "2023-05-19T18:48:04.385Z",
+    "updatedAt": "2023-05-19T18:48:04.385Z",
+    "__v": 0
+  },
+  {
+    "_id": "6467f2a113eef9c965a6aaf7",
+    "categoryName": "Groceries",
+    "budgetedAmount": { "$numberDecimal": "500" },
+    "frequency": "monthly",
+    "active": true,
+    "createdAt": "2023-05-19T22:05:21.534Z",
+    "updatedAt": "2023-05-19T22:05:21.534Z",
+    "__v": 0
+  },
+  {
+    "_id": "6467f3d5a686eefca25e5cd4",
+    "categoryName": "Eating Out",
+    "budgetedAmount": { "$numberDecimal": "400" },
+    "frequency": "monthly",
+    "active": true,
+    "createdAt": "2023-05-19T22:10:29.412Z",
+    "updatedAt": "2023-05-19T22:10:29.412Z",
+    "__v": 0
+  }
+]

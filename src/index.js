@@ -26,6 +26,8 @@ import "assets/scss/black-dashboard-react.scss";
 import "assets/demo/demo.css";
 import "assets/css/nucleo-icons.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
 
 import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
 import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
@@ -33,18 +35,20 @@ import BackgroundColorWrapper from "./components/BackgroundColorWrapper/Backgrou
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <ThemeContextWrapper>
-    <BackgroundColorWrapper>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/admin/*" element={<AdminLayout />} />
-          <Route path="/rtl/*" element={<RTLLayout />} />
-          <Route
-            path="*"
-            element={<Navigate to="/admin/dashboard" replace />}
-          />
-        </Routes>
-      </BrowserRouter>
-    </BackgroundColorWrapper>
-  </ThemeContextWrapper>
+  <Provider store={store}>
+    <ThemeContextWrapper>
+      <BackgroundColorWrapper>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/admin/*" element={<AdminLayout />} />
+            <Route path="/rtl/*" element={<RTLLayout />} />
+            <Route
+              path="*"
+              element={<Navigate to="/admin/dashboard" replace />}
+            />
+          </Routes>
+        </BrowserRouter>
+      </BackgroundColorWrapper>
+    </ThemeContextWrapper>
+  </Provider>
 );
