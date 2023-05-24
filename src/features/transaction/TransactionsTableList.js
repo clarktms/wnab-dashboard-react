@@ -21,7 +21,7 @@ const TransactionsTableList = () => {
     <tr key={transactions._id}>
       <td>{transactions.description.substring(0, 60)}</td>
       <td>{transactions.date}</td>
-      <td>{transactions.amount.$numberDecimal}</td>
+      <td>{"$" + transactions.amount.$numberDecimal}</td>
       <td>{transactions.categoryName}</td>
     </tr>
   ));
@@ -42,7 +42,7 @@ const TransactionsTableList = () => {
                       <th>Description</th>
                       <th>Date</th>
                       <th>Amount</th>
-                      <th>CategoryName</th>
+                      <th>Category Name</th>
                     </tr>
                   </thead>
                   <tbody>{renderedTransactions}</tbody>

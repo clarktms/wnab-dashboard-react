@@ -20,7 +20,7 @@ const CategoryTableList = () => {
   const renderedCategories = categories.map((categories) => (
     <tr key={categories._id}>
       <td>{categories.categoryName}</td>
-      <td>{categories.budgetedAmount.$numberDecimal}</td>
+      <td>{"$" + categories.budgetedAmount.$numberDecimal}</td>
       <td>{categories.frequency}</td>
     </tr>
   ));
