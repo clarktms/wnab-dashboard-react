@@ -23,7 +23,7 @@ import Notifications from "views/Notifications.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
-import TransactionsTableList from "features/transaction/TransactionsTableList";
+import TransactionTable from "views/TransactionTable";
 import CategoryTableList from "features/category/categoryTableList";
 
 var routes = [
@@ -40,7 +40,7 @@ var routes = [
     name: "Transactions",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-money-coins",
-    component: <TransactionsTableList />,
+    component: <TransactionTable />,
     layout: "/admin",
   },
   {

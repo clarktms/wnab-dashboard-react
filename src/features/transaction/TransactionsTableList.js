@@ -1,21 +1,37 @@
-import { useSelector } from "react-redux";
-import { selectAllTransactions } from "./transactionsSlice";
-
-import React from "react";
+import { Spinner } from "react-bootstrap";
+import { selectAllTransactions, fetchTransactions } from "./transactionsSlice";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 // reactstrap components
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  Table,
-  Row,
-  Col,
-} from "reactstrap";
+import { Table } from "reactstrap";
+import { decodedTextSpanIntersectsWith } from "typescript";
 
 const TransactionsTableList = () => {
+  const dispatch = useDispatch();
   const transactions = useSelector(selectAllTransactions);
+
+  const transactionStatus = useSelector((state) => state.transactions.status);
+  const error = useSelector((state) => state.transactions.error);
+
+  let content;
+
+  if (transactionStatus === "loading") {
+    content = <Spinner text="Loading..." />;
+  } else if (postStatus === "succeeded") {
+    // Sort posts in reverse chronological order by datetime string
+    const orderedTransactions = transactions
+      .slice()
+      .sort((a, b) => b.date.localeCompare(a.date));
+  } else if (transactions === "failed") {
+    content = <div>{error}</div>;
+  }
+
+  useEffect(() => {
+    if (transactionStatus === "idle") {
+      dispatch(fetchTransactions());
+    }
+  }, [transactionStatus, dispatch]);
 
   const renderedTransactions = transactions.map((transactions) => (
     <tr key={transactions._id}>
@@ -27,96 +43,17 @@ const TransactionsTableList = () => {
   ));
 
   return (
-    <>
-      <div className="content">
-        <Row>
-          <Col md="12">
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h4">Simple Table</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Table className="tablesorter" responsive>
-                  <thead className="text-primary">
-                    <tr>
-                      <th>Description</th>
-                      <th>Date</th>
-                      <th>Amount</th>
-                      <th>Category Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>{renderedTransactions}</tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col md="12">
-            <Card className="card-plain">
-              <CardHeader>
-                <CardTitle tag="h4">Table on Plain Background</CardTitle>
-                <p className="category">Here is a subtitle for this table</p>
-              </CardHeader>
-              <CardBody>
-                <Table className="tablesorter" responsive>
-                  <thead className="text-primary">
-                    <tr>
-                      <th>Name</th>
-                      <th>Country</th>
-                      <th>City</th>
-                      <th className="text-center">Salary</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Dakota Rice</td>
-                      <td>Niger</td>
-                      <td>Oud-Turnhout</td>
-                      <td className="text-center">$36,738</td>
-                    </tr>
-                    <tr>
-                      <td>Minerva Hooper</td>
-                      <td>Curaçao</td>
-                      <td>Sinaai-Waas</td>
-                      <td className="text-center">$23,789</td>
-                    </tr>
-                    <tr>
-                      <td>Sage Rodriguez</td>
-                      <td>Netherlands</td>
-                      <td>Baileux</td>
-                      <td className="text-center">$56,142</td>
-                    </tr>
-                    <tr>
-                      <td>Philip Chaney</td>
-                      <td>Korea, South</td>
-                      <td>Overland Park</td>
-                      <td className="text-center">$38,735</td>
-                    </tr>
-                    <tr>
-                      <td>Doris Greene</td>
-                      <td>Malawi</td>
-                      <td>Feldkirchen in Kärnten</td>
-                      <td className="text-center">$63,542</td>
-                    </tr>
-                    <tr>
-                      <td>Mason Porter</td>
-                      <td>Chile</td>
-                      <td>Gloucester</td>
-                      <td className="text-center">$78,615</td>
-                    </tr>
-                    <tr>
-                      <td>Jon Porter</td>
-                      <td>Portugal</td>
-                      <td>Gloucester</td>
-                      <td className="text-center">$98,615</td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
-    </>
+    <Table className="tablesorter" responsive>
+      <thead className="text-primary">
+        <tr>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Category Name</th>
+        </tr>
+      </thead>
+      <tbody>{renderedTransactions}</tbody>
+    </Table>
   );
 };
 
